@@ -1,11 +1,25 @@
 @echo off
 
-SET WEBHOOK_URL=https://discord.com/api/webhooks/854163170812624936/5DJ8e5o0S_tmjOlr3Ne8SC-TD-wRDUgo_pV5TfPLnl5hrUtWUAzdk3FmGKtGSUibXiig
+SET WEBHOOK_URL=
+SET content=
+SET username=
 
+if "%1"=="" goto usage
 :while
-if [%1]==[] goto usage
+if "%1"=="" goto send
+if "%1"=="-m" (
+    SET content=%2
+)
+if "%1"=="-n" (
+    SET username=%2
+)
+shift
+shift
+goto while
 
-curl -H "Content-Type: application/json" -d "{\"username\": \"%2\", \"content\":\"%1\"}" %WEBHOOK_URL%
+:send
+if %content%=="" goto usage
+curl -H "Content-Type: application/json" -d "{\"username\": \"%username%\", \"content\":\"%content%\"}" %WEBHOOK_URL%
 goto :eof
 
 :usage
