@@ -23,7 +23,7 @@ shift
 goto while
 
 :send
-curl -H "Content-Type: application/json" -d "{\"username\":\"%username%\", \"content\":\"%content%\", \"avatar_url\":\"%avatar%\"}" %WEBHOOK_URL%
+echo curl -H "Content-Type: application/json" -d "{\"username\":\"%username%\", \"content\":\"%content%\", \"avatar_url\":\"%avatar%\", \"allowed_mentions\":{\"parse\":[\"everyone\",\"users\"]}}" %WEBHOOK_URL% > command.txt
 goto :eof
 
 :usage
