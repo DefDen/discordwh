@@ -10,20 +10,19 @@ if "%1"=="" goto send
 if "%1"=="-?" goto usage
 if "%1"=="-h" goto usage
 if "%1"=="-m" (
-    SET content=%2
+    SET content=%~2
 )
 if "%1"=="-n" (
-    SET username=%2
+    SET username=%~2
 )
 if "%1"=="-a" (
-    SET avatar=%2
+    SET avatar=%~2
 )
 shift
 shift
 goto while
 
 :send
-if %content%=="" goto usage
 curl -H "Content-Type: application/json" -d "{\"username\":\"%username%\", \"content\":\"%content%\", \"avatar_url\":\"%avatar%\"}" %WEBHOOK_URL%
 goto :eof
 
