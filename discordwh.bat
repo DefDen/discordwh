@@ -12,19 +12,17 @@ if "%1"=="-?" goto usage
 if "%1"=="-h" goto usage
 if "%1"=="-m" (
     SET content=%~2
-    shift
 )
 if "%1"=="-n" (
     SET username=%~2
-    shift
 )
 if "%1"=="-a" (
     SET avatar=%~2
-    shift
 )
 if "%1"=="--test" (
     SET test="true"
 )
+shift
 shift
 goto while
 
